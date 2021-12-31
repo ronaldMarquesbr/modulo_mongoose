@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+</head>
+<body>
+
+    <h1>Editar Link</h1>
+
+    <form action="/edit/<%= body.id %>" method="POST">
+
+        <input type="text" class="field" name="title" placeholder="Title" value="<%= body.title %>">
+        <input type="text" class="field" name="description" placeholder="Description" value="<%= body.description %>">
+        <input type="text" class="field" name="url" placeholder="Url" value="<%= body.url %>">
+        <button>Editar</button>
+
+    </form>
+
+</body>
+</html>
