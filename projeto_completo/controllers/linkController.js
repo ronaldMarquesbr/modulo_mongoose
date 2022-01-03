@@ -6,7 +6,7 @@ const redirect = async (req, res, next) => {
 
     try {
 
-        let doc = await Link.findOne({ title });
+        let doc = await Link.findOneAndUpdate({ title  }, { $inc: {click: 1} });
 
         if (doc) {
             res.redirect(doc.url);
@@ -67,7 +67,7 @@ const deleteLink = async (req, res) => {
     try {
 
         await Link.findByIdAndDelete(id);
-        res.redirect('/all');
+        res.redirect('/');
 
     } catch (error) {
         res.status(404).send(error);
@@ -83,7 +83,7 @@ const loadLink = async (req, res) => {
     try {
 
         let doc = await Link.findById(id);
-        res.render('edit', { body: doc });
+        res.render('edit', { error:false, body: doc });
 
     } catch (error) {
         res.status(404).send(error);
@@ -118,7 +118,7 @@ const editLink = async (req, res) => {
 
     } catch (error) {
 
-        res.render('edit', { error:false, body: req.body });
+        res.render('edit', { error, body: req.body });
 
     }
 
